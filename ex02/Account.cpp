@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 
+//initializing static variables 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
@@ -10,18 +11,19 @@ int Account::_totalNbWithdrawals = 0;
 
 Account::Account (int initial_deposit)
 {
+    this->_displayTimestamp();
+
     _nbAccounts++;
     _accountIndex = _nbAccounts - 1;
     _totalAmount = initial_deposit;
     _amount = initial_deposit;
     _nbWithdrawals = 0;
     _nbDeposits = 0;
-
-    this->_displayTimestamp();
 }
 
 Account::~Account(void)
 {
+    std::cout << "Account destroyed!" << std::endl;
 
 }
 
@@ -70,7 +72,13 @@ int		Account::checkAmount(void) const
 
 void	Account::displayStatus(void) const
 {
+    this->_displayTimestamp();
 
+    std::cout << "--- Account Status --- " << std::endl; 
+    std::cout << "Account index: " << _accountIndex << std::endl;
+    std::cout << "Amount: " << _amount << std::endl;
+    std::cout << "Deposits: " << _nbDeposits << std::endl;
+    std::cout << "Withdrawals: " << _nbWithdrawals << std::endl;
 }
 
 void	Account::_displayTimestamp( void )
@@ -87,6 +95,7 @@ void	Account::_displayTimestamp( void )
                 << "] " << std::flush;
     std::cout << std::endl;
 }
+
 // private attributes
 int	Account::getNbAccounts( void )
 {
