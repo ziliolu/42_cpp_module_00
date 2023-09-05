@@ -23,15 +23,14 @@ Account::Account (int initial_deposit)
 
 Account::~Account(void)
 {
-    std::cout << "Account destroyed!" << std::endl;
-
+    std::cout << "Account "<< this->_accountIndex << " destroyed!" << std::endl;
 }
 
 void	Account::displayAccountsInfos(void)
 {
     _displayTimestamp();
 
-    std::cout << "Number of accounts: " << _nbAccounts << std::endl;
+    std::cout << std::endl << "Number of accounts: " << _nbAccounts << std::endl;
     std::cout << "Total Amount: " << _totalAmount << std::endl;
     std::cout << "Number of deposits: " << _totalNbDeposits << std::endl;
     std::cout << "Number of withdrawals: " << _totalNbWithdrawals << std::endl;
@@ -54,7 +53,7 @@ bool	Account::makeWithdrawal(int withdrawal)
 
     if(withdrawal > checkAmount())
     {
-        std::cout << "Withdrawal refused. Your balance is low. ";
+        std::cout << std::endl << "Withdrawal refused. Your balance is low." << std::endl;
         return (false);
     }
     _totalAmount -= withdrawal;
@@ -74,7 +73,7 @@ void	Account::displayStatus(void) const
 {
     this->_displayTimestamp();
 
-    std::cout << "--- Account Status --- " << std::endl; 
+    std::cout << std::endl << "--- Account Status --- " << std::endl; 
     std::cout << "Account index: " << _accountIndex << std::endl;
     std::cout << "Amount: " << _amount << std::endl;
     std::cout << "Deposits: " << _nbDeposits << std::endl;
@@ -83,17 +82,15 @@ void	Account::displayStatus(void) const
 
 void	Account::_displayTimestamp( void )
 {
-    std::time_t result = std::time(NULL);
+    std::time_t currentTime = std::time(NULL);
+    std::tm *timeInfo = std::localtime(&currentTime);
 
-    std::cout << std::setfill('0') <<"[" << 1900 + std::localtime(&result)->tm_year
-                << std::setw(2) << 1 + std::localtime(&result)->tm_mon
-                <<  std::setw(2) << std::localtime(&result)->tm_mday
-                <<  "_"
-                <<  std::setw(2) << std::localtime(&result)->tm_hour
-                <<  std::setw(2) << std::localtime(&result)->tm_min
-                <<  std::setw(2) << std::localtime(&result)->tm_sec 
-                << "] " << std::flush;
-    std::cout << std::endl;
+    std::cout << "[" << timeInfo->tm_year + 1900
+              << timeInfo->tm_mon
+              << timeInfo->tm_mday << "_"
+              << timeInfo->tm_hour
+              << timeInfo->tm_min
+              << timeInfo->tm_sec << "]";
 }
 
 // private attributes
