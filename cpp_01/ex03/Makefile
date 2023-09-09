@@ -1,8 +1,12 @@
-NAME = megaphone
+NAME = ex03
 CXX = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 RM = rm -f 
-SRCS = 	./megaphone.cpp
+SRCS =	./main.cpp		\
+		./HumanA.cpp 	\
+		./HumanB.cpp	\
+		./Weapon.cpp	
+
 OBJ = $(SRCS:%.cpp=%.o)
 
 all: $(NAME)

@@ -17,3 +17,5 @@ clean:
 
 fclean: clean 
 	$(RM) $(NAME)
+
+re: clean all

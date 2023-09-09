@@ -3,6 +3,7 @@
 using std::string;
 using std::cout;
 
+//its not in c way of wri
 int main(int argc, char **argv)
 {    
     int j;
