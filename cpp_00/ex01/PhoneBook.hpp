@@ -2,21 +2,21 @@
 # define PHONEBOOK_H
 
 # include <iostream>
+#include <algorithm>
 # include "Contact.hpp"
 
 class PhoneBook {
 
-    public:
-        Contact contacts[9];
 
+    public:
         PhoneBook();
         ~PhoneBook();
-        void    addContact(void);
-        void    displayContacts();
-        void    searchContact();
-        void    displayPrompt(void);
+        void    addContact();
+        bool    displayContacts();
+        bool    searchContact();
+        void    displayPrompt();
+    private:
+        Contact contacts[9];
 
 };
-
-
 #endif

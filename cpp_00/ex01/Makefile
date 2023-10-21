@@ -1,9 +1,9 @@
-NAME = myAwesomePhoneBook
+NAME = myPhoneBook
 CXX = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CFLAGS = -g -Wall -Wextra -Werror -std=c++98 -pedantic
 RM = rm -f 
-SRCS = 	./contact.cpp	\
-		./phoneBook.cpp \
+SRCS = 	./Contact.cpp	\
+		./PhoneBook.cpp \
 		./main.cpp
 OBJ = $(SRCS:%.cpp=%.o)
 
