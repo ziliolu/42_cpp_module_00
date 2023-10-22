@@ -13,7 +13,7 @@ int replace(char **argv, std::string buffer)
 	std::ofstream outfile;
 	int s1_found;
 
-	outfile.open(std::string(argv[1]).append(".replace"), std::ios::out);
+	outfile.open((const std::string *)std::string(argv[1]).append(".replace"), std::ios::out);
 	if(outfile.fail())
 		return 1;
 
