@@ -1,8 +1,8 @@
-#include "Zombie.hpp"
+#include "../includes/Zombie.hpp"
 
-Zombie::Zombie()
+Zombie::Zombie(std::string name)
 {
-    
+    this->_name = name;
 }
 
 Zombie::~Zombie()
@@ -18,11 +18,6 @@ void Zombie::announce(void)
 void Zombie::setName(std::string name)
 {
     this->_name = name;
-}
-
-std::string Zombie::getName(void)
-{
-   return this->_name;
 }
 
 // void Zombie::setIndex(int index)

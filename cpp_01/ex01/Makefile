@@ -1,20 +1,29 @@
 NAME = ex01
 CXX = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f 
-SRCS =  ./zombieHorde.cpp	\
-		./Zombie.cpp		\
-		./main.cpp		
+OBJ_DIR = obj
+SRC_DIR = ./src
+SRCS =  $(SRC_DIR)/Zombie.cpp		\
+		$(SRC_DIR)/ZombieHorde.cpp	\
+		$(SRC_DIR)/main.cpp
+		
+OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
-OBJ = $(SRCS:%.cpp=%.o)
+all: $(OBJ_DIR) $(NAME)
 
-all: $(NAME)
+$(OBJ_DIR):	
+	mkdir -p $(OBJ_DIR)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CFLAGS) $(OBJ) -o $(NAME)
 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CFLAGS) -c $< -o $@
+
 clean:
 	$(RM) $(OBJ)
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean 
 	$(RM) $(NAME)
