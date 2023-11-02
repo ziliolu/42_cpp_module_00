@@ -1,54 +1,53 @@
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <cstdlib>
 
-int err(std::string str)
+std::string ft_replace_line(std::string line, std::string s1, std::string s2)
 {
-    std::cout << str << std::endl;
-    return 1;
+    size_t i = 0;
+    while(1)
+    {
+        i = line.find(s1, i);
+        if(i == std::string::npos)
+            break;
+        line.erase(i, s1.length());
+        line.insert(i, s2);
+        i += s2.length();
+    }
+    return (line);
 }
 
-int replace(char **argv, std::string buffer)
-{
-	std::ofstream outfile;
-	int s1_found;
-
-	outfile.open((const std::string *)std::string(argv[1]).append(".replace"), std::ios::out);
-	if(outfile.fail())
-		return 1;
-
-	for(int i = 0; i < buffer.size(); i++)
-	{
-		s1_found = buffer.find(argv[2], i);
-		if(s1_found == i)
-		{
-			outfile << argv[3];
-			i += std::string(argv[2]). size() - 1;
-		}
-		else
-			outfile << buffer[i];
-	}
-	outfile.close();
-	return 0; 
-
-}
 int main(int argc, char **argv)
 {
 	if(argc != 4)
-		return err("error: invalid number of arguments");
+    {
+        std::cout << "Error: invalid number of arguments" << std::endl;
+        return (EXIT_FAILURE);
+    }
 
-	std::string infile = argv[1];
 	std::string s1 = argv[2];
 	std::string s2 = argv[3];
+    std::string outfile_str = std::string(argv[1]).append(".replace");
+    const char *infile_char = argv[1];
+    const char *outfile_char = outfile_str.c_str();
 
-	std::fstream file;
-	file.open(infile);
-	
-	if(!file)
-		return err("error: impossible to open the file"), err(infile), err("\n");
-	char buffer[1000];
-	file.read(buffer, sizeof(buffer));
+	std::ifstream infile;
+    std::ofstream outfile;
 
-	std::cout << "buf: " << buffer << std::endl;
-	return replace(argv, buffer); 
+    infile.open(infile_char);
+    outfile.open(outfile_char);
+    if(!infile.is_open() || !outfile.is_open())
+    {
+        std::cout << "Error: impossible to open a file" << std::endl;
+        return (EXIT_FAILURE);
+    }
+    std::string line;
+    while(getline(infile, line))
+    {
+        line = ft_replace_line(line, s1, s2);
+        outfile << line << std::endl;
+    }
+    infile.close();
+    outfile.close();
+    return (0);
 }

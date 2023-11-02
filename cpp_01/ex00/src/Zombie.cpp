@@ -19,8 +19,3 @@ void Zombie::setName(std::string name)
 {
     this->_name = name;
 }
-
-// void Zombie::setIndex(int index)
-// {
-//     this->_index = index;
-// }
