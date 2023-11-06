@@ -17,5 +17,4 @@ int main()
         std::cout << "Creation of third Zombie (in the stack)" << std::endl;
         randomChump("Stack");
     }
-
 }
