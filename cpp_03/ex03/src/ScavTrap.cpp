@@ -1,0 +1,49 @@
+#include "../includes/ScavTrap.hpp"
+#include "../includes/ClapTrap.hpp"
+#include "../includes/Colors.hpp"
+
+// Default constructor
+ScavTrap::ScavTrap() : ClapTrap() 
+{
+    this->_hitPoints = 100;
+    this->_attackDamage = 20;
+    this->_energyPoints = 50;
+    std::cout << CYAN "[SUB CLASS SCAVTRAP] Default constructor called" RESET << std::endl;
+}
+
+// Name constructor
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+{
+    this->_hitPoints = 100;
+    this->_attackDamage = 20;
+    this->_energyPoints = 50;
+     std::cout << CYAN "[SUB CLASS SCAVTRAP] Name constructor called: ScavTrap is created as " << name << RESET << std::endl;
+}
+
+// Destructor
+ScavTrap::~ScavTrap()
+{
+    std::cout << CYAN "[SUB CLASS SCAVTRAP] Destructor called: ScavTrap " << this->_name << " is destroyed" RESET << std::endl;
+}
+
+// Member functions
+void ScavTrap::guardGate()
+{
+    std::cout << CYAN "ScavTrap " << this->get_name() << " is in Gate Keeper Mode!" RESET << std::endl;
+}
+
+void ScavTrap::attack(const std::string& target)
+{
+    std::cout << CYAN "[ ATTACKING... ]";
+    if(!_isDead)
+    {
+        if(this->_energyPoints <= 0)
+            std::cout << " Impossible to attack: no more energy points available" RESET << std::endl;
+        else
+        {
+            this->_energyPoints--;
+            std::cout << " ScavTrap " << this->_name << " attacks " << target << " causing " << this->_attackDamage << " points of damage!" RESET << std::endl;
+        }
+    }
+    checkDeath();
+}
