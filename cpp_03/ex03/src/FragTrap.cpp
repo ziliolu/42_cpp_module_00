@@ -6,9 +6,6 @@
 // Default constructor
 FragTrap::FragTrap() : ClapTrap() 
 {
-    this->_hitPoints = 100;
-    this->_attackDamage = 30;
-    this->_energyPoints = 100;
     std::cout << GREEN "[SUB CLASS FRAGTRAP] Default constructor called" RESET<< std::endl;
 }
 
@@ -18,7 +15,13 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
     this->_hitPoints = 100;
     this->_attackDamage = 30;
     this->_energyPoints = 100;
-    std::cout << GREEN "[SUB CLASS FRAGTRAP] Name constructor called: FragTrap is created as " << name << RESET << std::endl;
+     std::cout << GREEN "[SUB CLASS FRAGTRAP] Name constructor called: FragTrap is created as " << name << RESET << std::endl;
+}
+
+// Copy constructor 
+FragTrap::FragTrap(const FragTrap& other) :ClapTrap(other)
+{
+    std::cout << "[SUB CLASS] Copy constructor called" << std::endl;
 }
 
 // Destructor
@@ -33,42 +36,17 @@ void FragTrap::highFivesGuys()
     std::cout << GREEN "[SUB CLASS FRAGTRAP] FragTrap " << this->get_name() << " gives you a high five 👋" RESET << std::endl;
 }
 
-// Getters
-std::string FragTrap::get_name() const
+// Overload operator
+FragTrap& FragTrap::operator=(const FragTrap& other)
 {
-    return (this->_name);
-}
-
-int FragTrap::get_hitPoints() const
-{
-    return (this->_hitPoints);
-}
-
-int FragTrap::get_energyPoints() const
-{
-    return (this->_energyPoints);
-}
-
-int FragTrap::get_attackDamage() const
-{
-    std::cout << "calling attck damage" << std::endl;
-    return (this->_attackDamage);
-}
-
-//Setters
-void FragTrap::set_name(std::string name)
-{
-    this->_name = name;
-}
-void FragTrap::set_hitPoints(int hitPoints)
-{
-	this->_hitPoints = hitPoints;
-}
-void FragTrap::set_energyPoints(int energyPoints)
-{
-	this->_energyPoints = energyPoints;
-}
-void FragTrap::set_attackDamage(int attackDamage)
-{
-	this->_attackDamage = attackDamage;
+    if(this != &other)
+    {
+        std::cout << GREEN "[SUB CLASS FRAGTRAP] Copy assignment operator called" RESET << std::endl;
+        this->_name = other._name;
+        this->_isDead = other._isDead;
+        this->_hitPoints = other._hitPoints;
+        this->_energyPoints = other._energyPoints;
+        this->_attackDamage = other._attackDamage;
+    }
+    return (*this);
 }

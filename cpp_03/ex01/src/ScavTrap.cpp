@@ -14,17 +14,36 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
     this->_hitPoints = 100;
     this->_attackDamage = 20;
     this->_energyPoints = 50;
-     std::cout << "[SUB CLASS] Name constructor called: ClapTrap is created as " << name << std::endl;
+     std::cout << "[SUB CLASS] Name constructor called: ScavTrap is created as " << name << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& other) :ClapTrap(other)
+{
+    std::cout << "[SUB CLASS] Copy constructor called" << std::endl;
 }
 
 // Destructor
 ScavTrap::~ScavTrap()
 {
-    std::cout << "[SUB CLASS] Destructor called: ClapTrap " << this->_name << " is destroyed" << std::endl;
+    std::cout << "[SUB CLASS] Destructor called: ScavTrap " << this->_name << " is destroyed" << std::endl;
 }
 
 // Member functions
 void ScavTrap::guardGate()
 {
     std::cout << "ScavTrap " << this->get_name() << " is in Gate Keeper Mode!" << std::endl;
+}
+
+ScavTrap& ScavTrap::operator=(const ScavTrap& other)
+{
+    if(this != &other)
+    {
+        std::cout << "[SUB CLASS] Copy assignment operator called" << std::endl;
+        this->_name = other._name;
+        this->_isDead = other._isDead;
+        this->_hitPoints = other._hitPoints;
+        this->_energyPoints = other._energyPoints;
+        this->_attackDamage = other._attackDamage;
+    }
+    return (*this);
 }

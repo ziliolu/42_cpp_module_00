@@ -10,10 +10,14 @@ class ScavTrap : public ClapTrap
         // Constructor & Destructor
         ScavTrap();
         ScavTrap(std::string name);
+        ScavTrap(const ScavTrap& other);
         ~ScavTrap();
 
         //  Member functions
         void guardGate();
+
+        //Overload operations
+        ScavTrap& operator=(const ScavTrap& other);
 };
 
 #endif

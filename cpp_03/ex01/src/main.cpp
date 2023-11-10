@@ -5,4 +5,5 @@ int main()
 {
     ScavTrap jack("Jack");
     jack.guardGate();
+    jack.displayInfo();
 }

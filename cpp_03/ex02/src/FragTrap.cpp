@@ -18,6 +18,12 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
      std::cout << GREEN "[SUB CLASS FRAGTRAP] Name constructor called: FragTrap is created as " << name << RESET << std::endl;
 }
 
+// Copy constructor 
+FragTrap::FragTrap(const FragTrap& other) :ClapTrap(other)
+{
+    std::cout << "[SUB CLASS] Copy constructor called" << std::endl;
+}
+
 // Destructor
 FragTrap::~FragTrap()
 {
@@ -28,4 +34,19 @@ FragTrap::~FragTrap()
 void FragTrap::highFivesGuys()
 {
     std::cout << GREEN "[SUB CLASS FRAGTRAP] FragTrap " << this->get_name() << " gives you a high five 👋" RESET << std::endl;
+}
+
+// Overload operator
+FragTrap& FragTrap::operator=(const FragTrap& other)
+{
+    if(this != &other)
+    {
+        std::cout << GREEN "[SUB CLASS FRAGTRAP] Copy assignment operator called" RESET << std::endl;
+        this->_name = other._name;
+        this->_isDead = other._isDead;
+        this->_hitPoints = other._hitPoints;
+        this->_energyPoints = other._energyPoints;
+        this->_attackDamage = other._attackDamage;
+    }
+    return (*this);
 }

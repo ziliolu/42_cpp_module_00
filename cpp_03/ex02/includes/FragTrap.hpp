@@ -10,10 +10,14 @@ class FragTrap : public ClapTrap
         // Constructor & Destructor
         FragTrap();
         FragTrap(std::string name);
+        FragTrap(const FragTrap& other);
         ~FragTrap();
 
         //  Member functions
         void highFivesGuys();
+
+        //Overload operations
+        FragTrap& operator=(const FragTrap& other);
 };
 
 #endif

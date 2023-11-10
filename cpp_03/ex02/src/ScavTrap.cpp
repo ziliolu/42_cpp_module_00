@@ -17,6 +17,12 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
      std::cout << CYAN "[SUB CLASS SCAVTRAP] Name constructor called: ScavTrap is created as " << name << RESET << std::endl;
 }
 
+// Copy operator
+ScavTrap::ScavTrap(const ScavTrap& other) :ClapTrap(other)
+{
+    std::cout << CYAN "[SUB CLASS SCAVTRAP] Copy constructor called" RESET << std::endl;
+}
+
 // Destructor
 ScavTrap::~ScavTrap()
 {
@@ -27,4 +33,19 @@ ScavTrap::~ScavTrap()
 void ScavTrap::guardGate()
 {
     std::cout << CYAN "ScavTrap " << this->get_name() << " is in Gate Keeper Mode!" RESET << std::endl;
+}
+
+// Overload operator
+ScavTrap& ScavTrap::operator=(const ScavTrap& other)
+{
+    if(this != &other)
+    {
+        std::cout << CYAN "[SUB CLASS SCAVTRAP] Copy assignment operator called" RESET << std::endl;
+        this->_name = other._name;
+        this->_isDead = other._isDead;
+        this->_hitPoints = other._hitPoints;
+        this->_energyPoints = other._energyPoints;
+        this->_attackDamage = other._attackDamage;
+    }
+    return (*this);
 }
