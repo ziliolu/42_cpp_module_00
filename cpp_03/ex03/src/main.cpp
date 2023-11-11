@@ -6,7 +6,10 @@
 
 int main()
 {
-    DiamondTrap diamond("Jack");
-    diamond.displayInfo();
-    diamond.attack("John");
+    DiamondTrap a("Jack");
+
+    a.displayInfo();
+    a.attack("John");
+    a.highFivesGuys();
+    a.whoAmI();
 };

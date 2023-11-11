@@ -21,7 +21,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 // Copy constructor 
 FragTrap::FragTrap(const FragTrap& other) :ClapTrap(other)
 {
-    std::cout << "[SUB CLASS] Copy constructor called" << std::endl;
+    std::cout << "[SUB CLASS FRAGTRAP] Copy constructor called" << std::endl;
 }
 
 // Destructor

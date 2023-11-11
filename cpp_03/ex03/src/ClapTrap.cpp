@@ -76,7 +76,7 @@ ClapTrap::ClapTrap() : _hitPoints(10), _energyPoints(10), _attackDamage(0), _isD
 // Name constructor
 ClapTrap::ClapTrap(std::string name)
 {
-    std::cout << YELLOW "[SUPER CLASS] Name constructor called: ClapTrap is created as " << name << RESET << std::endl;
+    std::cout << YELLOW "[SUPER CLASS] Name constructor called: ClapTrap is created"RESET << std::endl;
     this->_name = name;
     this->_hitPoints = 10;
     this->_energyPoints = 10;
@@ -98,7 +98,7 @@ ClapTrap::ClapTrap(const ClapTrap& other)
 // Destructor 
 ClapTrap::~ClapTrap()
 {
-    std::cout << YELLOW "[SUPER CLASS] Destructor called: ClapTrap " << this->_name << " is destroyed" RESET << std::endl;
+    std::cout << YELLOW "[SUPER CLASS] Destructor called: ClapTrap is destroyed" RESET << std::endl;
 }
 
 // Operator overload 

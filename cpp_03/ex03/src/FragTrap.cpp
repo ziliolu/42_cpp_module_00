@@ -15,25 +15,25 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
     this->_hitPoints = 100;
     this->_attackDamage = 30;
     this->_energyPoints = 100;
-     std::cout << GREEN "[SUB CLASS FRAGTRAP] Name constructor called: FragTrap is created as " << name << RESET << std::endl;
+     std::cout << GREEN "[SUB CLASS FRAGTRAP] Name constructor called: FragTrap is created" RESET << std::endl;
 }
 
 // Copy constructor 
-FragTrap::FragTrap(const FragTrap& other) :ClapTrap(other)
+FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)
 {
-    std::cout << "[SUB CLASS] Copy constructor called" << std::endl;
+    std::cout << "[SUB CLASS FRAGTRAP] Copy constructor called" << std::endl;
 }
 
 // Destructor
 FragTrap::~FragTrap()
 {
-    std::cout << GREEN "[SUB CLASS FRAGTRAP] Destructor called: FragTrap " << this->_name << " is destroyed" RESET << std::endl;
+    std::cout << GREEN "[SUB CLASS FRAGTRAP] Destructor called: FragTrap is destroyed" RESET << std::endl;
 }
 
 // Member functions
 void FragTrap::highFivesGuys()
 {
-    std::cout << GREEN "[SUB CLASS FRAGTRAP] FragTrap " << this->get_name() << " gives you a high five 👋" RESET << std::endl;
+    std::cout << GREEN "[SUB CLASS FRAGTRAP] FragTrap gives you a high five 👋" RESET << std::endl;
 }
 
 // Overload operator

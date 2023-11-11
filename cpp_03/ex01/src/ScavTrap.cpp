@@ -34,6 +34,22 @@ void ScavTrap::guardGate()
     std::cout << "ScavTrap " << this->get_name() << " is in Gate Keeper Mode!" << std::endl;
 }
 
+void ScavTrap::attack(const std::string& target)
+{
+    std::cout << "[ ATTACKING... ]";
+    if(!_isDead)
+    {
+        if(this->_energyPoints <= 0)
+            std::cout << " Impossible to attack: no more energy points available" << std::endl;
+        else
+        {
+            this->_energyPoints--;
+            std::cout << " ScavTrap " << this->_name << " attacks " << target << " causing " << this->_attackDamage << " points of damage!" RESET << std::endl;
+        }
+    }
+    checkDeath();
+}
+
 ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
     if(this != &other)
