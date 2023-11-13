@@ -44,7 +44,7 @@ void ScavTrap::attack(const std::string& target)
         else
         {
             this->_energyPoints--;
-            std::cout << " ScavTrap " << this->_name << " attacks " << target << " causing " << this->_attackDamage << " points of damage!" RESET << std::endl;
+            std::cout << " ScavTrap " << this->_name << " attacks " << target << " causing " << this->_attackDamage << " points of damage!" << std::endl;
         }
     }
     checkDeath();
