@@ -1,31 +1,39 @@
 #include "../includes/AMateria.hpp"
+#include "../includes/ICharacter.hpp"
 
 AMateria::AMateria()
 {
-    std::cout << "Default constructor called" << std::endl;
+    //std::cout << "[AMATERIA] Default constructor called" << std::endl;
     this->type = "";
 }
 
+AMateria::AMateria(std::string const& type)
+{
+    this->type = type;
+}
 AMateria::AMateria(const AMateria& other)
 {
-    this->type = other.type;
+    (void)other;
 }
 
 AMateria::~AMateria()
 {
-    std::cout << "Destructor called" << std::endl;
+    //std::cout << "[AMATERIA] Destructor called" << std::endl;
 }
 
 const AMateria& AMateria::operator=(const AMateria& other)
 {
-    if(this != &other)
-    {
-        this->type = other.type;
-    }
+    (void) other;
     return (*this);
 }
 
 std::string const& AMateria::getType() const
 {
     return this->type;
+}
+
+void AMateria::use(ICharacter& target)
+{   
+    (void) target;
+    //std::cout << "AMateria used on " << target.getName() << std::endl; 
 }

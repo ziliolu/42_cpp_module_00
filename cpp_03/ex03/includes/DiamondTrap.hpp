@@ -15,6 +15,7 @@ class DiamondTrap: public FragTrap, public ScavTrap
         //Member functions
         void whoAmI();
         void displayInfo();
+        using ScavTrap::attack;
 
         //Overload operations
         DiamondTrap& operator=(const DiamondTrap& other);

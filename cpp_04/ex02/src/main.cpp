@@ -10,6 +10,7 @@ int main()
     int N = 6;
     AAnimal *animals[N];
 
+    //AAnimal aanimal = new AAnimal(); 
     std::cout << std::endl << "---- Creating animals -----" << std::endl << std::endl;
     for(int i = 0; i < N; i++)
     {

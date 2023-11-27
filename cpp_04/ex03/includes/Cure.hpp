@@ -2,6 +2,7 @@
 # define CURE_HPP
 # include <iostream>
 # include "AMateria.hpp"
+# include "ICharacter.hpp"
 
 class Cure : public AMateria
 {
@@ -11,8 +12,8 @@ class Cure : public AMateria
         Cure(const Cure& other);
         const Cure& operator=(const Cure& other);
         std::string const& getType() const;
-        //virtual Cure* clone() const = 0;
-        //virtual void use(ICharacter& target);
+        virtual AMateria* clone() const;
+        virtual void use(ICharacter& target);
 };
 
 #endif

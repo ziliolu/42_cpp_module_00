@@ -11,7 +11,7 @@ Brain::Brain(const Brain& other)
 }
 Brain::~Brain()
 {
-    std::cout << "[Brain] Destructorcalled" << std::endl;
+    std::cout << "[Brain] Destructor called" << std::endl;
 }
 const Brain& Brain::operator=(const Brain& other)
 {

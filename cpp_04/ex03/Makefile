@@ -4,11 +4,12 @@ CFLAGS = -g -Wall -Wextra -Werror -std=c++98
 RM = rm -f 
 OBJ_DIR = obj
 SRC_DIR = ./src
-SRCS =  $(SRC_DIR)/main.cpp			\
-		$(SRC_DIR)/ICharacter.cpp	\
-		$(SRC_DIR)/AMateria.cpp		\
-		$(SRC_DIR)/Cure.cpp			\
-		$(SRC_DIR)/Ice.cpp			
+SRCS =  $(SRC_DIR)/main.cpp				\
+		$(SRC_DIR)/AMateria.cpp			\
+		$(SRC_DIR)/Cure.cpp				\
+		$(SRC_DIR)/Ice.cpp				\
+		$(SRC_DIR)/Character.cpp		\
+		$(SRC_DIR)/MateriaSource.cpp	
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
