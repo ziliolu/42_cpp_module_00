@@ -24,7 +24,6 @@ class Form {
         Form(Form &src);
         Form& operator=(const Form &other);
         ~Form();
-        friend std::ostream operator<<(std::ostream os, Form &object);
 
         /* Getters */
         const std::string getName();
@@ -49,5 +48,7 @@ class Form {
                 };
         };
 };
+
+std::ostream& operator<<(std::ostream& os, Form &object);
 
 #endif //FORM_H

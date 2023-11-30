@@ -9,7 +9,7 @@ Form::Form() :_name("Default form's name"), _isSigned(false), _gradeToSign(0), _
     std::cout << "[FORM] Default constructor called" << std::endl;
 }
 
-Form::Form(const std::string name, const int gradeToSign, const int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
+Form::Form(const std::string name, const int gradeToSign, const int gradeToExecute) : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
     std::cout << "[FORM] Complete constructor called" << std::endl;
 }
@@ -68,5 +68,13 @@ void Form::beSigned(Bureaucrat &bureaucrat)
     }
     bureaucrat.signForm(*this);
 
+}
+
+std::ostream& operator<<(std::ostream& os, Form &object) 
+{
+    if(object.getIsSigned())
+        return os << "Form is signed!";
+    else 
+        return os << "Form is still not signed!";
 }
 

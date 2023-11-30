@@ -4,7 +4,7 @@ Bureaucrat::Bureaucrat() : _name("Default name"), _grade(0)
 {
     std::cout << "[BUREAUCRAT] Default constructor called" << std::endl;
 }
-Bureaucrat::Bureaucrat(const std::string name, int grade) :_name(name)
+Bureaucrat::Bureaucrat(const std::string name, int grade) :_name(name), _grade(grade)
 {
     std::cout << "[BUREAUCRAT] Name + Grade constructor called" << std::endl;
     try {
@@ -30,6 +30,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
         this->_grade = other._grade;
     return (*this);
 }
+
 std::ostream& operator<<(std::ostream& os, const Bureaucrat &object)
 {
     return os << object.getName() << ", bureaucrat grade " << object.getGrade();
