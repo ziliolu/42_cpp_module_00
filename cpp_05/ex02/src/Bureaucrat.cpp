@@ -31,6 +31,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
         this->_grade = other._grade;
     return (*this);
 }
+
 std::ostream& operator<<(std::ostream& os, const Bureaucrat &object)
 {
     return os << object.getName() << ", bureaucrat grade " << object.getGrade();
@@ -94,5 +95,11 @@ void Bureaucrat::signForm(AForm &form)
         else
             std::cout << "high" << std::endl;
     }
+}
+
+void Bureaucrat::executeForm(AForm const & form)
+{
+    if(form.execute(*this))
+        std::cout << this->getName() << " executed " << form.getName() << std::endl;
 }
 

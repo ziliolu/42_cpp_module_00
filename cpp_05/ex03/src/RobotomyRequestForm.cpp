@@ -28,11 +28,14 @@ RobotomyRequestForm::~RobotomyRequestForm()
     std::cout << "[REQUESTOMY] Destructor called" << std::endl;
 }
 
-void RobotomyRequestForm::execute(Bureaucrat const & executor) const
+bool RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
     std::cout << "[EXECUTING...] ";
     if(!this->getIsSigned())
+    {
         std::cout << ERR_NOT_SIGNED << std::endl;
+        return false;    
+    }
     else
     {
         try {
@@ -46,6 +49,8 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
                 std::cout << " Ops! Robotomy failed" << std::endl;
         } catch (GradeTooLowException &e){
             print_exception(e);
+            return false;
         }
     }
+    return true;
 }

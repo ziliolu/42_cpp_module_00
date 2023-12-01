@@ -27,11 +27,14 @@ PresidentialPardonForm::~PresidentialPardonForm()
     std::cout << "[PRESIDENTIAL] Destructor called" << std::endl;
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const & executor) const
+bool PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
     std::cout << "[EXECUTING...] ";
     if(!this->getIsSigned())
+    {
         std::cout << ERR_NOT_SIGNED << std::endl;
+        return false;
+    }
     else
     {
         try {
@@ -40,6 +43,8 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor) const
             std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
         } catch (GradeTooLowException &e){
             print_exception(e);
+            return false;
         }
     }
+    return true;
 }

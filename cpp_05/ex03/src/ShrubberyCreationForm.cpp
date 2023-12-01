@@ -28,11 +28,14 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
     std::cout << "[SHRUBBERY] Destructor called" << std::endl;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+bool ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
     std::cout << "[EXECUTING...] ";
     if(!this->getIsSigned())
+    {
         std::cout << ERR_NOT_SIGNED << std::endl;
+        return false;
+    }
     else
     {
         try {
@@ -77,6 +80,8 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		    }
             } catch (GradeTooLowException &e){
                 print_exception(e);
-            }
+                return false;
+            } 
     }
+    return true;
 }

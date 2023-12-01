@@ -18,6 +18,13 @@ Intern::~Intern()
     std::cout << "[INTERN] Destructor called" << std::endl;
 }
 
+Intern& Intern::operator=(const Intern &other)
+{
+    std::cout << "[INTERN] Assignment operator called" << std::endl;
+    (void)other;
+    return (*this);
+}
+
 AForm *createShrubberyCreationForm(std::string target)
 {
     return new ShrubberyCreationForm(target);

@@ -18,4 +18,7 @@ int main()
 
     shrubbery.beSigned(b1);
     shrubbery.execute(b1);
+
+    b1.executeForm(presidential);
+    b1.executeForm(shrubbery);
 }
