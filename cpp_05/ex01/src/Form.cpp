@@ -67,7 +67,6 @@ void Form::beSigned(Bureaucrat &bureaucrat)
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
     bureaucrat.signForm(*this);
-
 }
 
 std::ostream& operator<<(std::ostream& os, Form &object) 

@@ -44,9 +44,9 @@ AForm *Intern::makeForm(std::string formName, std::string target) const
     typedef AForm *(*funcPtr)(std::string target);
     std::cout << "[MAKING FORM...] ";
     std::string form_names[3] = {
-        "shrubbery creation",
         "presidential pardon", 
-        "robotomy request"
+        "robotomy request",
+        "shrubbery creation"
     };
     funcPtr form_functions[3] = {
         &createPresidentialPardonForm,
