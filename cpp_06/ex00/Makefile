@@ -1,11 +1,11 @@
-NAME = ex01
+NAME = ex00
 CXX = c++
-CFLAGS = -g -Wall -Wextra -Werror -std=c++98 
+CFLAGS = -g -Wall -Wextra -Werror -std=c++98
 RM = rm -f 
 OBJ_DIR = obj
 SRC_DIR = ./src
-SRCS =  $(SRC_DIR)/main.cpp		\
-		$(SRC_DIR)/Serializer.cpp		
+SRCS =  $(SRC_DIR)/main.cpp						\
+		$(SRC_DIR)/ScalarConverter.cpp				\
 
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o)))
