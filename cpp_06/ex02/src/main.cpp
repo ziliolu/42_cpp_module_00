@@ -16,4 +16,6 @@ int main()
     std::cout << std::endl << "--- Identifying reference ---" << std::endl; 
     Base& ref_base = *base_ptr;
     identify(ref_base);
+
+    //!!!!check for memory leaks!!!!!
 }
