@@ -2,9 +2,9 @@
 
 In C++, exception handling provides a mechanism to deal with runtime errors and abnormal program conditions. The key components of exception handling in C++ are `try`, `catch`, and `throw`. Here's an overview of each:
 
-## `try`, `catch`, and `throw`
+### `try`, `catch`, and `throw`
 
-### `try` Block
+### `try` block
 
 - The `try` block contains the code that might throw an exception. It is followed by one or more `catch` blocks.
 
@@ -22,7 +22,7 @@ In C++, exception handling provides a mechanism to deal with runtime errors and 
     }
     ```
 
-### `catch` Blocks
+### `catch` blocks
 
 - `catch` blocks handle exceptions thrown in the corresponding `try` block. Each `catch` block specifies the type of exception it can handle.
 
@@ -40,7 +40,7 @@ In C++, exception handling provides a mechanism to deal with runtime errors and 
     }
     ```
 
-### `throw` Statement
+### `throw` statement
 
 - The `throw` statement is used to throw an exception. It can throw various types, including built-in types, objects, or pointers.
 
