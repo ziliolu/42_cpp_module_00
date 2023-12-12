@@ -2,7 +2,7 @@
 
 In C++ programming, there are three primary casting operators for type conversion: `static_cast`, `dynamic_cast`, and `reinterpret_cast`. Here's a brief overview of each:
 
-## `static_cast`
+## EX_00 `static_cast`
 
 - **Compile-Time Casting**: `static_cast` is a compile-time casting operator. It performs type conversions that are known at compile time and are considered safe by the compiler.
 
@@ -15,7 +15,7 @@ In C++ programming, there are three primary casting operators for type conversio
     int i = static_cast<int>(d);
     ```
 
-## `dynamic_cast`
+## EX_01 `dynamic_cast`
 
 - **Run-Time Casting (for Polymorphic Types)**: `dynamic_cast` is a run-time casting operator. It is primarily used with polymorphic types (types having at least one virtual function).
 
@@ -42,7 +42,7 @@ In C++ programming, there are three primary casting operators for type conversio
     }
     ```
 
-## `reinterpret_cast`
+## EX_02 `reinterpret_cast`
 
 - **Low-Level Bitwise Conversion**: `reinterpret_cast` is a low-level casting operator that performs a bitwise conversion between pointer types. It is not type-safe and should be used with caution.
 
