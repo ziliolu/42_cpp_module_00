@@ -15,7 +15,7 @@ In C++ programming, there are three primary casting operators for type conversio
     int i = static_cast<int>(d);
     ```
 
-### `ex_01` `dynamic_cast`
+### `#ex_01` `dynamic_cast`
 
 - **Run-Time Casting (for Polymorphic Types)**: `dynamic_cast` is a run-time casting operator. It is primarily used with polymorphic types (types having at least one virtual function).
 
