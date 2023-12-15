@@ -1,10 +1,10 @@
-NAME = ex00
+NAME = ex02
 CXX = c++
 CFLAGS = -g -Wall -Wextra -Werror -std=c++98
 RM = rm -f 
 OBJ_DIR = obj
 SRC_DIR = ./src
-SRCS =  $(SRC_DIR)/main.cpp						
+SRCS =  $(SRC_DIR)/main.cpp			
 
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o)))
