@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "../includes/Whatever.hpp"
+#include "../includes/whatever.hpp"
 
 int main()
 {
@@ -19,6 +19,11 @@ int main()
     std::cout << "c = " << c << ", d = " << d << std::endl;
     std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
     std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-    
+    double x = 2.1;
+    double y = 3.5;
+    ::swap( x, y );
+    std::cout << "x = " << x << ", y = " << y << std::endl;
+    std::cout << "min( x, y ) = " << ::min( x, y ) << std::endl;
+    std::cout << "max( x, y ) = " << ::max( x, y ) << std::endl;
     return 0;
 }
