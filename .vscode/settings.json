@@ -8,7 +8,8 @@
     "istream": "cpp",
     "sstream": "cpp",
     "limits": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "*.tpp": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

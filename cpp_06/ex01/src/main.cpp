@@ -26,6 +26,6 @@ int main()
     std::cout << "Age: " << new_data_set->age << std::endl;
     std::cout << "Job position: " << new_data_set->job_position << std::endl;
     std::cout << "Employed: " << new_data_set->employed << std::endl;
-    std::cout << "Ptr's address: " << &new_data_set<< std::endl;
-    std::cout << "Unsigned long ptr value: " << (unsigned long) &new_data_set<< std::endl;
+    std::cout << "Ptr's address: " << new_data_set << std::endl;
+    std::cout << "Unsigned long ptr value: " << (unsigned long) new_data_set<< std::endl;
 }   
