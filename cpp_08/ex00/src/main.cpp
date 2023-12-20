@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:51:19 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/12/19 19:37:35 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:51:30 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int main()
         std::vector<int> int_arr;
         int_arr.push_back(1);
         int_arr.push_back(5);
-        int_arr.push_back(10);
-        easyfind(int_arr, 0);    
+        int_arr.push_back(10);    
+        easyfind(int_arr, 10);
     } 
     catch(std::exception &e)
     {
