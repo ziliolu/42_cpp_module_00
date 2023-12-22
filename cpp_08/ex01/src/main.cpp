@@ -42,4 +42,22 @@ int main()
     span.printNumbers();
     span2.printNumbers();
     span3.printNumbers();
+
+    try 
+    {
+        std::cout << std:: endl << "== Test: adding 10000 numbers to the vector ==" << std::endl;  
+        int n = 10000;
+        Span span(n);
+        for(int i = 0; i < n; i++)
+        {
+            span.addNumber(i + 1);
+        }
+        std::cout << "All 10000 numbers added successfully to the vector!" << std::endl;
+        std::cout << std::endl << "Longest span: " << span.longestSpan() << std::endl;
+        std::cout << "Shortest span: " << span.shortestSpan() << std::endl << std::endl;
+    }
+    catch(const std::exception &e)
+    {
+        std::cout << "Exception caught: " << e.what() << std::endl << std::endl;
+    }
 }
