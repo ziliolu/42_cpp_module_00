@@ -3,6 +3,9 @@
 
 #include <vector>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include "Colors.hpp"
 
 class Span
 {
@@ -19,6 +22,7 @@ class Span
         int shortestSpan();
         int longestSpan();
         void printNumbers();
+        void addManyNumbers(int nNumbers);
 };
 
 #endif

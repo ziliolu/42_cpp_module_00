@@ -7,17 +7,34 @@ int main()
     Span span(n);
 
     try
-    {
-        std::cout << std::endl << "== Test: accessing shortest and longest span in an empty vector ==" << std::endl;
-        span.shortestSpan();
-        span.longestSpan();
-        
+    {   
+        Span spanRange(10);
+        std::cout << std::endl << GREEN_TEXT << "== Test: filling the vector with a range of random numbers ==" << RESET_COLOR << std::endl;
+        spanRange.addNumber(5);
+        spanRange.addManyNumbers(9);
+        spanRange.printNumbers();
+        std::cout << GREEN_TEXT << "[OK]" << RESET_COLOR << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << "Exception caught: " << e.what() << std::endl << std::endl;
+        std::cerr << RED_TEXT << "Exception caught: " << e.what() << RESET_COLOR << std::endl;
+        std::cout << RED_TEXT << "[K0]" << RESET_COLOR << std::endl;
+    }
+
+    try
+    {
+        std::cout << std::endl << GREEN_TEXT << "== Test: accessing shortest and longest span in an empty vector ==" << RESET_COLOR << std::endl;
+        span.shortestSpan();
+        span.longestSpan();
+        std::cout << GREEN_TEXT << "[OK]" << RESET_COLOR << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << RED_TEXT << "Exception caught: " << e.what() << RESET_COLOR << std::endl;
+        std::cout << RED_TEXT << "[K0]" << RESET_COLOR << std::endl << std::endl;
     }
     
+    std::cout << std::endl << GREEN_TEXT << "== Test: manual filling with addNumber() ==" << RESET_COLOR << std::endl;
     std::cout << "=== Filling vector ===" << std::endl;
     for(int i = 0; i <= n; i++)
     {
@@ -28,13 +45,15 @@ int main()
         }
         catch (std::exception &e)
         {
-            std::cout << "Error: [" << i * 100 << "] not added to the vector. Exception caught: " << e.what() << std::endl;
+            std::cout << RED_TEXT << "Error: [" << i * 100 << "] not added to the vector. Exception caught: " << e.what() << RESET_COLOR << std::endl;
+            std::cout << RED_TEXT << "[K0]" << RESET_COLOR << std::endl;
         }
     }
     std::cout << std::endl << "Longest span: " << span.longestSpan() << std::endl;
     std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
     std::cout << std::endl;
 
+    std::cout << std::endl << GREEN_TEXT << "== Test: copy constructor and overload operator ==" << RESET_COLOR << std::endl;
     Span span2(span);
     Span span3;
 
@@ -45,7 +64,7 @@ int main()
 
     try 
     {
-        std::cout << std:: endl << "== Test: adding 10000 numbers to the vector ==" << std::endl;  
+        std::cout << std:: endl << GREEN_TEXT << "== Test: adding 10000 numbers to the vector ==" << RESET_COLOR << std::endl;  
         int n = 10000;
         Span span(n);
         for(int i = 0; i < n; i++)
@@ -58,6 +77,7 @@ int main()
     }
     catch(const std::exception &e)
     {
-        std::cout << "Exception caught: " << e.what() << std::endl << std::endl;
+        std::cout << RED_TEXT << "Exception caught: " << e.what() << RESET_COLOR << std::endl;
+            std::cout << RED_TEXT << "[K0]" << RESET_COLOR << std::endl << std::endl;
     }
 }

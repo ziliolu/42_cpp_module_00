@@ -30,6 +30,17 @@ void Span::addNumber(int number)
     _vector.push_back(number);
 }
 
+void Span::addManyNumbers(int nNumbers)
+{
+    std::srand(std::time(NULL));
+    for(int i = _vector.size(); i <= nNumbers; i++)
+    {
+        if(_vector.size() >= N)
+            throw( std::out_of_range("limit of numbers reached"));
+        _vector.push_back(rand());
+    }
+}
+
 int Span::shortestSpan()
 {
     if(_vector.size() == 0 || _vector.size() == 1)
