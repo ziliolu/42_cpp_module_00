@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/26 23:30:47 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/12/27 16:35:42 by lpicoli-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/Span.hpp"
 
@@ -21,6 +32,25 @@ int main()
         std::cout << RED_TEXT << "[K0]" << RESET_COLOR << std::endl;
     }
 
+    try
+    {   
+        Span spanRetetiveNumber(10);
+        std::cout << std::endl << GREEN_TEXT << "== Test: shortest with repetitive numbers ==" << RESET_COLOR << std::endl;
+        spanRetetiveNumber.addNumber(5);
+        spanRetetiveNumber.addNumber(5);
+        spanRetetiveNumber.addNumber(10);
+        spanRetetiveNumber.addNumber(11);
+        spanRetetiveNumber.printNumbers();
+        std::cout << std::endl << "Longest span: " << spanRetetiveNumber.longestSpan() << std::endl;
+        std::cout << "Shortest span: " << spanRetetiveNumber.shortestSpan() << std::endl;
+        std::cout << GREEN_TEXT << "[OK]" << RESET_COLOR << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << RED_TEXT << "Exception caught: " << e.what() << RESET_COLOR << std::endl;
+        std::cout << RED_TEXT << "[K0]" << RESET_COLOR << std::endl;
+    }
+    
     try
     {
         std::cout << std::endl << GREEN_TEXT << "== Test: accessing shortest and longest span in an empty vector ==" << RESET_COLOR << std::endl;

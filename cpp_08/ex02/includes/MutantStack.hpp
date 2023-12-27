@@ -1,27 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/26 22:57:40 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/12/26 23:15:19 by lpicoli-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef MUTANTSTACK_HPP
+#define MUTANTSTACK_HPP
+
 #include <iostream> 
 #include <stack>
 #include <deque>
+#include "Colors.hpp"
 
-template <typename T, typename Container = std::deque<T> >
-class MutantStack : public std::stack<T, Container>
+template <typename T>
+class MutantStack : public std::stack<T>
 {
     public:
+            /* Orthodox Canonical Form*/
+            MutantStack();
+            MutantStack(const MutantStack &src);
+            const MutantStack &operator=(const MutantStack &other);
+            ~MutantStack();
+            /*------------------------*/
 
-        typedef typename std::stack<T, Container>::container_type container_type;
+            /* Iterators */
+            typedef typename std::stack<T>::container_type::iterator iterator;
+            typedef typename std::stack<T>::container_type::const_iterator const_iterator;
 
-        typename container_type::iterator begin() {
-            return this->c.begin();
-        }
-
-        typename container_type::iterator end() {
-            return this->c.end();
-        }
-
-        typename container_type::const_iterator cbegin() const {
-            return this->c.cbegin();
-        }
-
-        typename container_type::const_iterator cend() const {
-            return this->c.cend();
-        }
+            iterator begin();
+            iterator end();
+            const_iterator cbegin() const;
+            const_iterator cend() const;
+            /*-------------*/
 };
+
+#include "../src/MutantStack.tpp" 
+#endif

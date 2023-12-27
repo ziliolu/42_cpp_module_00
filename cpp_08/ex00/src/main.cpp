@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:51:19 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/12/26 13:59:10 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/12/26 23:34:33 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,4 @@ int main()
     {
         std::cout << RED_TEXT << "Exception caught: " << e.what() << RESET_COLOR << std::endl;
     }
-}
+}       
