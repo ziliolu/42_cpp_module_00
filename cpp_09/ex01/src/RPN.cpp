@@ -42,7 +42,6 @@ void RPN::calculateRPN(std::string expression)
     std::istringstream ss(expression);
     std::string token;
     int value;
-
     while (ss >> token)
     {
         if (this->_stack.size() < 2 && (token == "*" || token == "/" || token == "+" || token == "-"))
@@ -64,6 +63,11 @@ void RPN::calculateRPN(std::string expression)
             this->_stack.pop();
             int b = this->_stack.top();
             this->_stack.pop();
+            if (a == 0)
+            {
+                std::cerr << "Error: Division by zero" << std::endl;
+                return;
+            }
             this->_stack.push(b / a);
         }
         else if (token == "+")
@@ -86,6 +90,11 @@ void RPN::calculateRPN(std::string expression)
         {
             std::stringstream ss(token);
             ss >> value;
+            if (value >= 10)
+            {
+                std::cerr << "Error: all values must be less than 10" << std::endl;
+                return;
+            }
             this->_stack.push(value);
         }
     }

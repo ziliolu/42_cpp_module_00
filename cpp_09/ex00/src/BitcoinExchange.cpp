@@ -76,9 +76,9 @@ void BitcoinExchange::calculateRates(const std::string &inputFilePath)
 
         date = Utils::trim(date);
         if (!Utils::isValidDate(date)) {
-            std::cout << "Invalid Date: " << date << std::endl;
+            std::cout << "Error: invalid date => " << date << std::endl;
         } else if (!Utils::isValidValue(value)) {
-            std::cout << "Date: " << date << ", Invalid Value: " << value << std::endl; 
+            std::cout << "Error: date => " << date << ", invalid value => " << value << std::endl; 
         } else {
             std::map<std::string, float>::iterator it = database.find(date);
             if (it != database.end()) {
@@ -94,7 +94,7 @@ void BitcoinExchange::calculateRates(const std::string &inputFilePath)
                     double rate = it->second;
                     std::cout << date << " => " << value << " = " << value * rate << std::endl;
                 } else {
-                    std::cerr << "Error: No valid date found in database." << std::endl;
+                    std::cerr << "Error: no valid date found in database." << std::endl;
                 }
             }
         }

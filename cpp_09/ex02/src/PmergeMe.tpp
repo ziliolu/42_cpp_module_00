@@ -1,146 +1,249 @@
-template <typename T>
-PmergeMe<T>::PmergeMe() {
-    std::cout << "PmergeMe constructor" << std::endl;
+#include "../includes/PmergeMe.hpp"
+
+template <typename T> PmergeMe<T>::PmergeMe(int argc, char **argv)
+{
+    startTimer();
+    groupElements(argc, argv);
 }
 
-template <typename T>
-PmergeMe<T>::PmergeMe(const PmergeMe& other) : _main(other._main), _pend(other._pend) {
-    std::cout << "PmergeMe copy constructor" << std::endl;
-}
+template <typename T> void PmergeMe<T>::groupElements(int argc, char **argv)
+{
+    int first, second;
+    int i = 1;
+    while (i < argc)
+    {
+        if (i == argc - 1)
+        {
+            pending.push_back(std::atoi(argv[i]));
+            return;
+        }
 
-template <typename T>
-PmergeMe<T>::~PmergeMe() {
-    std::cout << "PmergeMe destructor" << std::endl;
-}
+        first = std::atoi(argv[i]);
+        second = std::atoi(argv[i + 1]);
 
-template <typename T>
-PmergeMe<T>& PmergeMe<T>::operator=(const PmergeMe& other) {
-    if (this != &other) {
-        _main = other._main;
-        _pend = other._pend;
+        if (first >= second)
+        {
+            main.push_back(first);
+            pending.push_back(second);
+        }
+        else
+        {
+            main.push_back(second);
+            pending.push_back(first);
+        }
+        i += 2;
     }
-    std::cout << "PmergeMe assignment operator" << std::endl;
+}
+
+template <typename T> int PmergeMe<T>::getSize() const
+{
+    return main.size();
+}
+
+template <typename T> T PmergeMe<T>::getMain() const
+{
+    return main;
+}
+
+template <typename T> T PmergeMe<T>::getPending() const
+{
+    return pending;
+}
+
+template <typename T> void PmergeMe<T>::printContainer(T container)
+{
+    typename T::iterator it = container.begin();
+    while (it != container.end())
+    {
+        std::cout << *it << " ";
+        ++it;
+    }
+    std::cout << std::endl;
+}
+
+template <typename T> void PmergeMe<T>::printPending()
+{
+    std::cout << "Pend: ";
+    typename T::iterator it = pending.begin();
+    while (it != pending.end())
+    {
+        std::cout << *it << " ";
+        ++it;
+    }
+    std::cout << std::endl;
+}
+
+template <typename T> void PmergeMe<T>::printMain()
+{
+    std::cout << "Main:  ";
+    typename T::iterator it = main.begin();
+    while (it != main.end())
+    {
+        std::cout << *it << " ";
+        ++it;
+    }
+    std::cout << std::endl;
+}
+
+template <typename T>
+void PmergeMe<T>::mergeSort(int left, int right)
+{
+    if (left >= right) return;
+
+    int mid = left + (right - left) / 2;
+    mergeSort(left, mid);
+    mergeSort(mid + 1, right);
+    merge(left, mid, right);
+}
+
+template <typename Container>
+void PmergeMe<Container>::merge(int left, int mid, int right)
+{
+    Container leftMainContainer(main.begin() + left, main.begin() + mid + 1);
+    Container rightMainContainer(main.begin() + mid + 1, main.begin() + right + 1);
+
+    Container leftPendingContainer(pending.begin() + left, pending.begin() + mid + 1);
+    Container rightPendingContainer(pending.begin() + mid + 1, pending.begin() + right + 1);
+
+    typename Container::iterator mainIt = main.begin() + left;
+    typename Container::iterator pendingIt = pending.begin() + left;
+
+    typename Container::iterator leftMainIt = leftMainContainer.begin();
+    typename Container::iterator leftPendingIt = leftPendingContainer.begin();
+    typename Container::iterator rightMainIt = rightMainContainer.begin();
+    typename Container::iterator rightPendingIt = rightPendingContainer.begin();
+
+    // Merging main and pending containers
+    while (leftMainIt != leftMainContainer.end() && rightMainIt != rightMainContainer.end()) {
+        if (*leftMainIt <= *rightMainIt) {
+            *mainIt = *leftMainIt;
+            *pendingIt = *leftPendingIt;
+            ++leftMainIt;
+            ++leftPendingIt;
+        } else {
+            *mainIt = *rightMainIt;
+            *pendingIt = *rightPendingIt;
+            ++rightMainIt;
+            ++rightPendingIt;
+        }
+        ++mainIt;
+        ++pendingIt;
+    }
+
+    // Merge remaining elements from left side
+    while (leftMainIt != leftMainContainer.end()) {
+        *mainIt = *leftMainIt;
+        *pendingIt = *leftPendingIt;
+        ++leftMainIt;
+        ++leftPendingIt;
+        ++mainIt;
+        ++pendingIt;
+    }
+
+    // Merge remaining elements from right side
+    while (rightMainIt != rightMainContainer.end()) {
+        *mainIt = *rightMainIt;
+        *pendingIt = *rightPendingIt;
+        ++rightMainIt;
+        ++rightPendingIt;
+        ++mainIt;
+        ++pendingIt;
+    }
+}
+
+template <typename Container>
+void PmergeMe<Container>::insertIntoSortedList()
+{
+    if (pending.empty()) return;
+
+    main.insert(main.begin(), pending.front());
+    int i = 0;
+    size_t jacobIter = 1;
+    size_t distance = jacobsFormula(jacobIter) * 2;
+    size_t insertCount = 1;
+
+    while (i + distance < pending.size()) {
+        int start = i;
+        i += distance;
+        while (i > start) {
+            binaryInsert(0, i + insertCount - 1, pending[i]);
+            ++insertCount;
+            --i;
+        }
+        i += distance;
+        ++jacobIter;
+        distance = jacobsFormula(jacobIter) * 2;
+    }
+
+    int start = i;
+    i = pending.size() - 1;
+    while (i > start) {
+        binaryInsert(0, i + insertCount - 1, pending[i]);
+        ++insertCount;
+        --i;
+    }
+}
+
+template <typename Container>
+void PmergeMe<Container>::binaryInsert(int left, int right, int number)
+{
+    if (left >= right) {
+        if (main[left] > number) {
+            main.insert(main.begin() + left, number);
+        } else {
+            main.insert(main.begin() + left + 1, number);
+        }
+        return;
+    }
+
+    int mid = left + (right - left) / 2;
+    if (main[mid] == number) {
+        main.insert(main.begin() + mid, number);
+        return;
+    } else if (number > main[mid]) {
+        binaryInsert(mid + 1, right, number);
+    } else {
+        binaryInsert(left, mid, number);
+    }
+}
+
+template <typename Container> size_t PmergeMe<Container>::jacobsFormula(size_t n)
+{
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return jacobsFormula(n - 1) + (2 * jacobsFormula(n - 2));
+}
+
+template <typename T> void PmergeMe<T>::startTimer()
+{
+    startTime = clock();
+}
+
+template <typename T> void PmergeMe<T>::endTimer()
+{
+    endTime = clock();
+}
+
+template <typename T> void PmergeMe<T>::showExecutionTime(const std::string &name, const std::string &container)
+{
+    double executionTime = double(endTime - startTime) / CLOCKS_PER_SEC;
+    std::cout << "Execution time for " << name << " with " << getSize() << " elements in " << container << ": "
+              << std::fixed << std::setprecision(6) << executionTime * 1000000 << " microseconds" << std::endl;
+}
+
+template <typename T> PmergeMe<T>::~PmergeMe() {}
+
+template <typename T> PmergeMe<T>::PmergeMe(const PmergeMe &copy)
+{
+    *this = copy;
+}
+
+template <typename T> const PmergeMe<T>& PmergeMe<T>::operator=(const PmergeMe<T>& copy)
+{
+    if (this != &copy)
+    {
+        // Logic for copying
+    }
     return *this;
 }
 
-template <typename T>
-std::vector<std::pair<int, int> > PmergeMe<T>::separate_into_pairs(const std::vector<int>& container) {
-    std::cout << "1. Merging the numbers into pairs" << std::endl;
-    std::vector<std::pair<int, int> > pairs;
-    for (size_t i = 0; i < container.size(); i += 2) {
-        int first = container[i];
-        int second = (i + 1 < container.size()) ? container[i + 1] : 0; // Assuming 0 as a default value for the second element if it doesn't exist
-        pairs.push_back(std::make_pair(first, second));
-    }
-    print_pairs(pairs);
-    return pairs;
-}
-
-template <typename T>
-std::vector<std::pair<int, int> > PmergeMe<T>::sort_pairs(std::vector<std::pair<int, int> >& pairs) {
-    std::cout << "2. Sorting the pairs" << std::endl;
-    for (typename std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); ++it) {
-        if (it->first > it->second) {
-            std::swap(it->first, it->second);
-        }
-    }
-    print_pairs(pairs);
-    return pairs;
-}
-
-template <typename T>
-void PmergeMe<T>::add_to_main_and_pend(std::vector<std::pair<int, int> >& pairs) {
-    for (typename std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); ++it) {
-        _main.push_back(it->second);
-        _pend.push_back(it->first);
-    }
-
-    print_containers(_main, _pend);
-}
-
-template <typename T>
-void PmergeMe<T>::print_pairs(const std::vector<std::pair<int, int> >& pairs) {
-    for (typename std::vector<std::pair<int, int> >::const_iterator it = pairs.begin(); it != pairs.end(); ++it) {
-        std::cout << "(" << it->first << ", " << it->second << ") ";
-    }
-    std::cout << std::endl;
-}
-
-template <typename T>
-T PmergeMe<T>::recursive_sort(T& nums) {
-    // Base case: if the container has one or no elements, it's already sorted
-    if (nums.size() <= 1) {
-        return nums;
-    }
-
-    // Step 1: Form pairs
-    typedef typename T::value_type ValueType; // Type of elements in the container
-    std::vector<std::pair<ValueType, ValueType> > pairs;
-
-    typename T::iterator it = nums.begin();
-    while (it != nums.end()) {
-        ValueType first = *it;
-        ++it;
-        if (it != nums.end()) {
-            ValueType second = *it;
-            pairs.push_back(std::make_pair(std::min(first, second), std::max(first, second)));
-            ++it;
-        } else {
-            pairs.push_back(std::make_pair(first, first)); // Use the same value for both elements
-        }
-    }
-
-    // Step 2: Extract leaders (larger elements of each pair)
-    T leaders;
-    typename std::vector<std::pair<ValueType, ValueType> >::const_iterator pair_it;
-    for (pair_it = pairs.begin(); pair_it != pairs.end(); ++pair_it) {
-        leaders.push_back(pair_it->second);
-    }
-
-    // Recursive call
-    leaders = recursive_sort(leaders);
-
-    // Step 3: Merge the sorted leaders back with the smaller elements
-    T sorted;
-    typename T::iterator leader_it = leaders.begin();
-    for (pair_it = pairs.begin(); pair_it != pairs.end(); ++pair_it) {
-        sorted.push_back(pair_it->first);
-        if (leader_it != leaders.end()) {
-            sorted.push_back(*leader_it);
-            ++leader_it;
-        }
-    }
-
-    // If there are remaining leaders, add them to the sorted list
-    while (leader_it != leaders.end()) {
-        sorted.push_back(*leader_it);
-        ++leader_it;
-    }
-
-    return sorted;
-}
-
-template <typename T>
-void PmergeMe<T>::print_containers(T main, T pend) const {
-    std::cout << "Main container: ";
-    for (typename T::const_iterator it = main.begin(); it != main.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
-
-    std::cout << "Pend container: ";
-    for (typename T::const_iterator it = pend.begin(); it != pend.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
-}
-
-template <typename T>
-const T& PmergeMe<T>::get_main() const {
-    return _main;
-}
-
-template <typename T>
-const T& PmergeMe<T>::get_pend() const {
-    return _pend;
-}
